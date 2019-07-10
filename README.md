@@ -16,6 +16,10 @@ A partir d'un script en ligne de commande on choisit les questions à ajouter qu
         * Deux mots héxadécimaux sur deux octets
     * Complément à 2 (sur n bits > 2 bits)
 
+## Ajout du 10/07/2019
+* Génération à partir d'un fichier source
+* Possibilité de charger un ancien fichier sous deux conditions : que le fichier soit présent dans le dossier et que son nom respecte le format utilisé.
+
 ## Remerciements
 Merci à tous les gens qui ont des problèmes et qui les postent sur les forums !
 Merci à aegirhall pour son module console-menu (chaudement recommandé par notre donneur d'ordres).
