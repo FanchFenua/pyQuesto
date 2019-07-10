@@ -4,6 +4,12 @@ from consolemenu.items import *
 import lib_pyQuesto as pq # ^_^
 
 def main():
+    # Un fichier a-t-il été choisi ?
+    try :
+        jsonFile
+    except NameError :
+        jsonFile = pq.choisirFichier()
+
  ######################## Menu principal ########################
     # Création du menu principal
     main_menu = ConsoleMenu("pyQuesto", "Le QCM c'est du gâteau !")

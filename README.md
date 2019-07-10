@@ -18,5 +18,5 @@ A partir d'un script en ligne de commande on choisit les questions à ajouter qu
 
 ## Remerciements
 Merci à tous les gens qui ont des problèmes et qui les postent sur les forums !
-Merci à aegirhall pour son module console-menu (chaudement recommandé par notre donneur d'ordres.
+Merci à aegirhall pour son module console-menu (chaudement recommandé par notre donneur d'ordres).
 

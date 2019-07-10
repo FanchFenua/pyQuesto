@@ -3,6 +3,55 @@ import random
 import json 
 import re
 
+## Classe permettant de connaître le fichier manipulé
+class FichierUtilise :
+    def __init__( self ):
+        self.nom_fichier = ""
+
+    def __call__( self ):
+        return self.nom_fichier
+
+zeFile = FichierUtilise()
+
+######################## Choix du fichier à traiter ########################
+def choisirFichier() :
+    from datetime import datetime
+    import os
+    import shutil
+
+    files_ok = []                       # Pour lister es fichiers valides
+    liste = os.listdir('.')             # Récupère la liste des fichiers dans le dossier courant
+
+    for file in liste :
+        if(re.search(r"^questo_[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}.json$",file)) :
+            files_ok.append(file)
+
+    # Si aucun fichier valide trouvé on met le choix par défaut i.e. en créer un
+    if len(files_ok) == 0 :
+        choix = "0"
+    # Sinon on propose à l'utilisateur d'en choisir un (ou d'en créer un nouveau)
+    else :
+        print("Les fichiers suivants ont été trouvés :")
+        print("Veuillez choisir un numéro (0 pour un nouveau fichier).\n")
+        i = 0
+        for file in files_ok :
+            i += 1
+            print(str(i) +" : "+ file)
+        choix = ""
+        while not (re.search("^[0-9]+$", choix) and int(choix) >= 0 and int(choix) <= len(files_ok)) :
+            choix = input("\nVotre choix : ")
+
+    # Création du fichier
+    if choix == "0" :
+        uneDate = datetime.now()
+        jsonFile = "./questo_"+ uneDate.strftime("%Y-%m-%d-%H-%M-%S") +".json"
+        shutil.copy("./source.json", jsonFile)
+    else :
+        jsonFile = files_ok[int(choix)-1]
+
+    zeFile.nom_fichier = jsonFile
+    return zeFile()
+
 ###############################
 #### Fonctions générales ######
 ###############################
@@ -10,14 +59,14 @@ import re
 ### Ajouter une question dans le fichier json
 def addToJson(nouvelle_entree):
     # Ouverture et sérialisation du fichier json
-    with open('test.json', 'r') as jsonfile:
+    with open(zeFile(), 'r') as jsonfile:
         mondict = json.load(jsonfile)
     #Ajout de la nouvelle entrée
     mondict["questionnaire"]["questions"].append(nouvelle_entree)
     # Retour en format json
     monjson = json.dumps(mondict, indent=2)
     # On écrase l'ancien fihcier json
-    with open('test.json', 'w') as jsonfile:
+    with open(zeFile(), 'w') as jsonfile:
         jsonfile.write(monjson)
     # On affiche un message de confirmation
     retour = input("Question bien ajoutée !\nAppuyer sur entrée pour revenir au menu")
