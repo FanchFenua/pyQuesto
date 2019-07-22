@@ -15,9 +15,30 @@ function chargerJSON(evt) {
         catch(erreur)  {
             document.getElementById("erreur").innerHTML = "JSON invalide !<br />"+ erreur
         }
-        document.getElementById("result").innerHTML = "<p>propriétaire : "+ leJSON.owner +"</p>"
+        var template, data, html
+        template = document.getElementById("tpl_owner").innerHTML
+        datas = {
+            "nom" : leJSON.owner[0].nom,
+            "prenom" : leJSON.owner[0].prenom,
+            "classe" : leJSON.owner[0].classe
+        }
+        html = Mustache.render(template,datas)
+        document.getElementById("affichage").innerHTML = html
+
     }
     // On lit le fichier du champ input qui a l'id "files"
     reader.readAsText(evt.target.files[0])
 }
 
+/*
+var template, data, html
+    template = "<ul>{{#repo}}<li>{{nom}}</li>{{/repo}}</ul>"
+    data = {
+        "repo": [
+            {"nom" : "Nom A"},
+            {"nom" : "Nom B"},
+            {"nom" : "Nom C"}
+        ]
+    }
+    html = Mustache.render(template,data)
+    document.getElementById("result").innerHTML = html*/
