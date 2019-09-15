@@ -1,5 +1,11 @@
 {
-  "owner": "Fanch",
+  "owner": [
+    {
+      "nom": "Fanch",
+      "prenom" : "Fenua",
+      "classe" : "NSI"
+    }
+  ],
   "questionnaire": {
     "questions": [
       {

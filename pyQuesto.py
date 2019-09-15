@@ -12,7 +12,7 @@ def main():
 
  ######################## Menu principal ########################
     # Création du menu principal
-    main_menu = ConsoleMenu("pyQuesto", "Le QCM c'est du gâteau !")
+    main_menu = ConsoleMenu("pyQuesto", "Le QCM c'est du gâteau !"), "Vous utilisez le fichier "+ jsonFile
  
     # Menu principal : ajout d'une entrée question ouverte
     main_menu_open = FunctionItem("Ajouter une question ouverte", pq.addQuestionSimple)
